@@ -103,6 +103,15 @@ def ga_pos_lookup_nlp():
 
 
 @pytest.fixture(scope="session")
+def la_nlp():
+    nlp = spacy.blank("la")
+    nlp.config["initialize"]["lookups"] = INIT_LOOKUPS_CONFIG
+    nlp.add_pipe("lemmatizer")
+    nlp.initialize()
+    return nlp
+
+
+@pytest.fixture(scope="session")
 def lb_nlp():
     nlp = spacy.blank("lb")
     nlp.config["initialize"]["lookups"] = INIT_LOOKUPS_CONFIG
